@@ -120,6 +120,30 @@ section {
   color: var(--glow-cyan);
 }
 
+.nav-logo-img {
+  height: 42px;
+  width: auto;
+  vertical-align: middle;
+  margin-right: 10px;
+  border-radius: 8px;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  filter: drop-shadow(0 0 6px rgba(212, 168, 83, 0.3));
+}
+
+.nav-logo:hover .nav-logo-img {
+  transform: scale(1.08);
+  filter: drop-shadow(0 0 12px rgba(212, 168, 83, 0.5));
+}
+
+.footer-logo-img {
+  height: 60px;
+  width: auto;
+  vertical-align: middle;
+  margin-right: 12px;
+  border-radius: 10px;
+  filter: drop-shadow(0 0 8px rgba(212, 168, 83, 0.3));
+}
+
 .nav-links {
   display: flex;
   gap: 2rem;
@@ -536,14 +560,15 @@ svg.service-icon:hover {
   position: relative;
   border-radius: var(--radius-card);
   overflow: hidden;
-  aspect-ratio: 4/3;
   cursor: pointer;
+  background: var(--bg-card);
+  border: var(--glass-border);
 }
 
 .portfolio-item img {
   width: 100%;
-  height: 100%;
-  object-fit: cover;
+  height: auto;
+  display: block;
   transition: transform 0.5s ease;
 }
 
