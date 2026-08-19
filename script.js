@@ -214,23 +214,21 @@ document.addEventListener('DOMContentLoaded', () => {
     // 9. Portfolio Lightbox
     // ==========================================
     const portfolioItems = document.querySelectorAll('.portfolio-item');
+    const lightbox = document.getElementById('portfolioLightbox');
+    const lightboxImg = document.getElementById('lightboxImg');
+    const lightboxCaption = document.getElementById('lightboxCaption');
     
-    if (portfolioItems.length > 0) {
-        const lightbox = document.createElement('div');
-        lightbox.className = 'lightbox';
-        lightbox.innerHTML = `
-            <div class="lightbox-close">&times;</div>
-            <div class="lightbox-content"></div>
-        `;
-        document.body.appendChild(lightbox);
-        
-        const lightboxContent = lightbox.querySelector('.lightbox-content');
+    if (portfolioItems.length > 0 && lightbox) {
         const lightboxClose = lightbox.querySelector('.lightbox-close');
         
         portfolioItems.forEach(item => {
             item.addEventListener('click', () => {
-                const bg = window.getComputedStyle(item).backgroundImage;
-                lightboxContent.style.backgroundImage = bg;
+                const imgSrc = item.getAttribute('data-img');
+                const title = item.querySelector('.portfolio-info h4')?.textContent || '';
+                const desc = item.querySelector('.portfolio-info p')?.textContent || '';
+                
+                lightboxImg.src = imgSrc;
+                lightboxCaption.textContent = title + (desc ? ' — ' + desc : '');
                 lightbox.classList.add('active');
                 document.body.style.overflow = 'hidden';
             });
@@ -239,11 +237,12 @@ document.addEventListener('DOMContentLoaded', () => {
         const closeLightbox = () => {
             lightbox.classList.remove('active');
             document.body.style.overflow = '';
+            lightboxImg.src = '';
         };
         
         lightboxClose.addEventListener('click', closeLightbox);
         lightbox.addEventListener('click', (e) => {
-            if (e.target === lightbox) closeLightbox();
+            if (e.target === lightbox || e.target.classList.contains('lightbox-img-wrapper')) closeLightbox();
         });
         document.addEventListener('keydown', (e) => {
             if (e.key === 'Escape' && lightbox.classList.contains('active')) closeLightbox();
