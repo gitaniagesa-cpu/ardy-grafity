@@ -130,6 +130,27 @@ section {
   color: var(--glow-cyan);
 }
 
+.brand-text {
+  display: inline-flex;
+  flex-direction: column;
+  line-height: 1.1;
+}
+
+.brand-highlight {
+  color: #FFB300;
+  font-weight: 800;
+}
+
+.brand-tagline {
+  font-size: 0.55rem;
+  color: rgba(255, 255, 255, 0.6);
+  letter-spacing: 2.5px;
+  text-transform: uppercase;
+  font-weight: 400;
+  font-family: var(--font-body);
+  margin-top: 1px;
+}
+
 .nav-logo-img {
   height: 44px;
   width: 44px;
