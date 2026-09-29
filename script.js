@@ -423,45 +423,45 @@ document.addEventListener('DOMContentLoaded', () => {
     
     if (heroSection && heroContent) {
         heroSection.addEventListener('mousemove', (e) => {
-            const xAxis = (window.innerWidth / 2 - e.pageX) / 50; 
-            const yAxis = (window.innerHeight / 2 - e.pageY) / 50;
-            
+            const xAxis = (window.innerWidth / 2 - e.pageX) / 120;
+            const yAxis = (window.innerHeight / 2 - e.pageY) / 120;
+
             heroContent.style.transform = `translate(${xAxis}px, ${yAxis}px)`;
         });
-        
+
         heroSection.addEventListener('mouseleave', () => {
-            heroContent.style.transform = `translate(0px, 0px)`;
-            heroContent.style.transition = `transform 0.5s ease`;
+            heroContent.style.transform = 'translate(0px, 0px)';
+            heroContent.style.transition = 'transform 0.5s ease';
         });
-        
+
         heroSection.addEventListener('mouseenter', () => {
-            heroContent.style.transition = `none`;
+            heroContent.style.transition = 'none';
         });
     }
 
     // ==========================================
     // 14. Typing Effect
     // ==========================================
-    const typeWriter = (element, speed = 50) => {
+    const typeWriter = (element, speed = 90) => {
         if (!element) return;
         const text = element.textContent;
         element.textContent = '';
         element.style.display = 'inline-block';
-        
+
         const cursor = document.createElement('span');
         cursor.textContent = '|';
-        cursor.style.animation = 'blink 1s step-end infinite';
-        
+        cursor.style.animation = 'blink 1.2s ease-in-out infinite';
+
         const style = document.createElement('style');
         style.innerHTML = `
             @keyframes blink {
                 0%, 100% { opacity: 1; }
-                50% { opacity: 0; }
+                50% { opacity: 0.25; }
             }
         `;
         document.head.appendChild(style);
         element.parentNode.insertBefore(cursor, element.nextSibling);
-        
+
         let i = 0;
         const type = () => {
             if (i < text.length) {
@@ -470,9 +470,9 @@ document.addEventListener('DOMContentLoaded', () => {
                 setTimeout(type, speed);
             }
         };
-        setTimeout(type, 500); // initial delay
+        setTimeout(type, 400);
     };
-    
+
     const badge = document.querySelector('.hero-badge');
     if (badge) typeWriter(badge);
 
@@ -490,13 +490,13 @@ document.addEventListener('DOMContentLoaded', () => {
         elements.forEach((el, index) => {
             if (el) {
                 el.style.opacity = '0';
-                el.style.transform = 'translateY(30px)';
-                el.style.transition = 'opacity 0.8s ease, transform 0.8s ease';
-                
+                el.style.transform = 'translateY(18px)';
+                el.style.transition = 'opacity 0.75s ease, transform 0.75s ease';
+
                 setTimeout(() => {
                     el.style.opacity = '1';
                     el.style.transform = 'translateY(0)';
-                }, 200 + (index * 200));
+                }, 180 + (index * 170));
             }
         });
     };
